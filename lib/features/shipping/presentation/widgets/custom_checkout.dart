@@ -212,14 +212,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     return BlocConsumer<CheckoutCubit, CheckoutState>(
       listener: (context, state) {
         if (state is CheckoutSuccess) {
-          setState(() {
-            _isOrderCompleted = true;
-          });
-          // تنظيف السلة فور نجاح الطلب
-          context.read<CartCubit>().clearCart();
+          // بنعلم إن الطلب كمل فقط في حالة الكاش أو الطلبات اللي مش محتاجة لينك خارجي
+          if (selectedPaymentMethod == "COD") {
+            setState(() {
+              _isOrderCompleted = true;
+            });
+          }
+          // تنظيف السلة فور نجاح الطلب إذا كان دفع عند الاستلام فقط
+          if (selectedPaymentMethod == "COD") {
+            context.read<CartCubit>().clearCart();
+          }
 
-          // التحقق إذا كان هناك رابط دفع (تمارا أو تابي)
-          // بنجرب نسحب الداتا سواء كانت في الروت أو جوه أوبجيكت data
+          // التحقق إذا كان هناك رابط دفع (فيزا، تمارا)
           final responseData = state.response['data'] ?? state.response;
           final paymentUrl = responseData['checkoutUrl'] ??
               responseData['payment_url'] ??
@@ -228,10 +232,12 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 
           if (paymentUrl != null &&
               paymentUrl.toString().contains('http') &&
-              selectedPaymentMethod == "Tamara") {
+              (selectedPaymentMethod == "Tamara" ||
+                  selectedPaymentMethod == "Paymob_Cards" ||
+                  selectedPaymentMethod == "Paymob_ApplePay")) {
             _launchPaymentUrl(paymentUrl.toString());
           } else {
-            // إظهار الديالوج الرائع للطلبات العادية
+            // إظهار الديالوج للطلبات العادية أو الكاش
             _showSuccessDialog(context);
           }
         }
@@ -421,8 +427,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             .toList(),
       );
 
-      if (selectedPaymentMethod == "COD" || selectedPaymentMethod == "Tamara") {
-        // دفع عند الاستلام أو تمارا (تحويل مباشر)
+      if (selectedPaymentMethod == "COD" ||
+          selectedPaymentMethod == "Tamara" ||
+          selectedPaymentMethod == "Paymob_Cards" ||
+          selectedPaymentMethod == "Paymob_ApplePay") {
+        // دفع عند الاستلام أو تمارا أو فيزا أو أبل باي (تحويل مباشر)
         context.read<CheckoutCubit>().submitOrder(request);
       } else {
         final checkoutCubit = context.read<CheckoutCubit>();
