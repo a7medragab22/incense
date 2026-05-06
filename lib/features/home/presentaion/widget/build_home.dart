@@ -3,7 +3,6 @@ import 'package:insins/core/animation/scroll_reveal.dart';
 import 'package:insins/features/home/presentaion/widget/about_scetion.dart';
 import 'package:insins/features/home/presentaion/widget/categories_section.dart';
 import 'package:insins/features/home/presentaion/widget/custom_footer.dart';
-import 'package:insins/features/home/presentaion/widget/custom_hero.dart';
 
 class HomeContentWidget extends StatelessWidget {
   /// الدالة التي تستقبل القسم المختار (سواء كائن Category أو SubCategory)
@@ -32,9 +31,9 @@ class HomeContentWidget extends StatelessWidget {
         children: [
           // 1. الـ Banner الرئيسي (Hero)
 
-          HeroBannerWidget(
-            onShopTap: onShopTap,
-          ),
+          // HeroBannerWidget(
+          //   onShopTap: onShopTap,
+          // ),
 
           // 2. قسم "عن إنسينس" مع أنيميشن الظهور
           ScrollReveal(
