@@ -121,10 +121,10 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
               Icon(FontAwesomeIcons.solidCreditCard,
                   color: Colors.white.withValues(alpha: 0.8), size: 30.sp),
               Text(
-                "VISA",
+                "Mastercard",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24.sp,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w900,
                   fontStyle: FontStyle.italic,
                 ),
@@ -257,9 +257,9 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
             ],
           ),
           SizedBox(height: 20.h),
-          _tabbyRow("دفعة اليوم", "33%"),
-          _tabbyRow("بعد شهر", "33%"),
-          _tabbyRow("بعد شهرين", "34%"),
+          _tamaraRow("دفعة اليوم", "33%"),
+          _tamaraRow("بعد شهر", "33%"),
+          _tamaraRow("بعد شهرين", "34%"),
           SizedBox(height: 20.h),
           const Divider(),
           SizedBox(height: 20.h),
@@ -271,7 +271,7 @@ class _PaymentDetailsViewState extends State<PaymentDetailsView> {
     );
   }
 
-  Widget _tabbyRow(String label, String value) {
+  Widget _tamaraRow(String label, String value) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Row(

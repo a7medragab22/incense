@@ -35,10 +35,11 @@ class _PaymentSectionState extends State<PaymentSection> {
           ),
         ),
         SizedBox(height: 12.h),
-        _buildOption("Visa", "بطاقة ائتمان (فيزا / ماستركارد)",
-            FontAwesomeIcons.ccVisa, const Color(0xFF1A1F71)),
         _buildOption(
-            "ApplePay", "Apple Pay", FontAwesomeIcons.applePay, Colors.black),
+            "Paymob_Cards", "بطاقة ائتمان", null, const Color(0xFF1A1F71),
+            imagePath: 'assets/images/mastercard.png'),
+        _buildOption("Paymob_ApplePay", "Apple Pay", FontAwesomeIcons.applePay,
+            Colors.black),
         _buildOption("Tamara", "قسّطها مع تمارا (تمارا)", Icons.credit_card,
             const Color(0xFFE47C25)),
         _buildOption("COD", "الدفع عند الاستلام (كاش)", Icons.money_outlined,
@@ -48,7 +49,8 @@ class _PaymentSectionState extends State<PaymentSection> {
   }
 
   Widget _buildOption(
-      String value, String title, IconData icon, Color iconColor) {
+      String value, String title, IconData? icon, Color iconColor,
+      {String? imagePath}) {
     bool isSelected = widget.selectedMethod == value;
     return GestureDetector(
       onTap: () => widget.onMethodChanged(value),
@@ -104,8 +106,12 @@ class _PaymentSectionState extends State<PaymentSection> {
               ),
             ),
             SizedBox(width: 14.w),
-            Icon(icon,
-                color: isSelected ? iconColor : Colors.grey[400], size: 24.sp),
+            imagePath != null
+                ? Image.asset(imagePath,
+                    height: 35.h, width: 50.w, fit: BoxFit.contain)
+                : Icon(icon,
+                    color: isSelected ? iconColor : Colors.grey[400],
+                    size: 24.sp),
           ],
         ),
       ),

@@ -101,7 +101,7 @@ class _LuxuryHomePageState extends State<LuxuryHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       // ── AppBar ─────────────────────────────────────
       appBar: CustomAppBar(
         onHomeTap: _goToHome,

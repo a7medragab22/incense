@@ -67,38 +67,36 @@ class AboutSection extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40.h),
 
           // 4. قسم الصورة مع الـ Shadow Effect (اللي تحتها)
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              // الطبقة الرمادية (الخيال اللي تحت يمين)
-              Container(
-                width: 0.9.sw,
-                height: 230.h,
-                transform: Matrix4.translationValues(10, 15, 0), // تحريك الظل
-                decoration: BoxDecoration(
-                  color: const Color(0xFF93908B).withValues(alpha: 0.6),
-                  borderRadius: BorderRadius.circular(25.r),
-                ),
-              ),
-              // كارت الصورة الرئيسي
-              Container(
-                width: 0.9.sw,
-                height: 230.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.r),
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?q=80&w=1000'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 30.h),
+          // Stack(
+          //   alignment: Alignment.bottomCenter,
+          //   children: [
+          //     // الطبقة الرمادية (الخيال اللي تحت يمين)
+          //     Container(
+          //       width: 0.9.sw,
+          //       height: 230.h,
+          //       transform: Matrix4.translationValues(10, 15, 0), // تحريك الظل
+          //       decoration: BoxDecoration(
+          //         color: const Color(0xFF93908B).withValues(alpha: 0.6),
+          //         borderRadius: BorderRadius.circular(25.r),
+          //       ),
+          //     ),
+          //     // كارت الصورة الرئيسي
+          //     Container(
+          //       width: 0.9.sw,
+          //       height: 230.h,
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(25.r),
+          //         image: const DecorationImage(
+          //           image: NetworkImage(
+          //               'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?q=80&w=1000'),
+          //           fit: BoxFit.cover,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

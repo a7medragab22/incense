@@ -35,7 +35,6 @@ class DetailsProductCard extends StatelessWidget {
       child: Column(
         children: [
           // 1. شيلنا DetailsHeader خالص عشان زرار الرجوع يختفي تماماً
-          SizedBox(height: MediaQuery.of(context).padding.top + 10.h),
 
           Expanded(
             child: SingleChildScrollView(
